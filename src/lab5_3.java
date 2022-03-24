@@ -5,14 +5,14 @@ class q53_1 {
     public static void main(String[] args) {
         int i = 1;
         int sum = 0;
-        while (sum < 100){
-            sum = sum + i;
-            i = i + 1;
-            
-            if(sum<100){
-                System.out.println(sum);
+            while (sum < 100){
+                sum = sum + i;
+                i = i + 1;
+                
+                if(sum<100){
+                    System.out.println(sum);
+                }
             }
-        }
     }
 }
 
@@ -22,17 +22,17 @@ class q53_2{
         ArrayList<Integer> inputted = new ArrayList<Integer>();
         int input, sum=0;
 
-        do{
-            System.out.print("Enter number: ");
-            input = sc.nextInt();
-            inputted.add(input);
-            sum = sum + input;
-        }while (input!=0);
+            do{
+                System.out.print("Enter number: ");
+                input = sc.nextInt();
+                inputted.add(input);
+                sum = sum + input;
+            }while (input!=0);
 
         System.out.print("Numbers inputted: ");
-        for (int i = 0; i < inputted.size(); i++){
-            System.out.println(inputted.get(i) + " ");
-        }
+            for (int i = 0; i < inputted.size(); i++){
+                System.out.println(inputted.get(i) + " ");
+            }
         System.out.println("Sum of numbers: " + sum);
     }
 }
@@ -57,12 +57,12 @@ class q53_4{
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int i=0, input = 0, sum = 0;
-        do{
-            System.out.print("Enter number: ");
-            input = sc.nextInt();
-            sum = sum + input;
-            i = i + 1;
-        } while (i<20 && input >=0);
+            do{
+                System.out.print("Enter number: ");
+                input = sc.nextInt();
+                sum = sum + input;
+                i = i + 1;
+            } while (i<20 && input >=0);
     }
 }
 
@@ -71,9 +71,9 @@ class q53_5{
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter PIN: ");
         int pin = sc.nextInt();
-        while (pin!=877){
-            System.out.print("Incorrect pin number, please try again: ");
-            pin = sc.nextInt();
-        }
+            while (pin!=877){
+                System.out.print("Incorrect pin number, please try again: ");
+                pin = sc.nextInt();
+            }
     }
 }

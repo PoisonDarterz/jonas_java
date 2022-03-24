@@ -23,7 +23,7 @@ class q51_2{
                 ttl = ttl + num;
                 i = i+1;
             }
-        avg = ttl / 10;
+        avg = ttl / 10.0;
         System.out.println("Total :" + ttl);
         System.out.println("Average: " + avg);
     }
@@ -34,13 +34,17 @@ class q51_3{
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int i = 0;
-        int min = 999999;
+        int min = 999999, max = -999999;
             while (i<10){
                 System.out.print("Enter number: ");
                 int num = sc.nextInt();
 
                 if(num < min){
                     min = num;
+                }
+
+                if(num > max){
+                    max = num;
                 }
                 i = i+1;
             }
