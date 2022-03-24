@@ -1,3 +1,4 @@
+package prac_preprac;
 import java.util.Scanner;
 import java.text.DecimalFormat;
 

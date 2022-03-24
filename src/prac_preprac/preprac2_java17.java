@@ -1,3 +1,4 @@
+package prac_preprac;
 /*
 * Jonas Chuan
 * F1T4
@@ -9,7 +10,7 @@
 import java.util.Scanner;
 import java.text.DecimalFormat;
 
-class preprac2 {
+class preprac2_java17 {
     public static void main(String[] args) {
         //init libraries
         Scanner jonas = new Scanner(System.in);
@@ -31,19 +32,26 @@ class preprac2 {
             double tax=0.00;
             double total;
 
-            switch(code){
-                case 0:{
-                    tax = 0.00;
-                    break;
-                } case 1:{
-                    tax = amount * 0.03;
-                    break;
-                } case 2:{
-                    tax = amount * 0.05;
-                    break;
-                }
-            }
+            // switch(code){
+            //     case 0:{
+            //         tax = 0.00;
+            //         break;
+            //     } case 1:{
+            //         tax = amount * 0.03;
+            //         break;
+            //     } case 2:{
+            //         tax = amount * 0.05;
+            //         break;
+            //     }
+            // }
             
+            switch(code){
+                case 0 -> tax = 0.00;
+                case 1 -> tax = amount * 0.03;
+                case 2 -> tax = amount * 0.05;
+            }
+
+
             total = amount + tax;
             String dfamount = df.format(amount);
             String dftax = df.format(tax);
