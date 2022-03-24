@@ -45,7 +45,9 @@ class q53_3{
         do{
             System.out.print("Enter number: ");
             input = sc.nextInt();
-            sum = sum + input;
+                if(input>0){
+                    sum = sum + input;
+                }
         }while (input>0);
 
         System.out.println("Sum of numbers: " + sum);
