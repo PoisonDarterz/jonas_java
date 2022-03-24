@@ -47,3 +47,23 @@ class q62_2{
         System.out.println("Name of student with lowest weight is: " + minname);
     }
 }
+
+
+class q62_3{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int[] num = new int[10];
+
+        for(int i=0; i<num.length; i++){
+            System.out.print("Enter a number: ");
+            num[i] = sc.nextInt();
+        }
+
+        System.out.println("Odd numbers inputted are: ");
+        for(int j=0; j<num.length; j++){
+            if (num[j] %2 ==1){
+                System.out.print(num[j] + "  ");
+            }
+        }
+    }
+}

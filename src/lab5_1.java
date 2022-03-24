@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.text.DecimalFormat;
 
 class q51_1 {
     public static void main(String[] args) {
@@ -57,31 +58,46 @@ class q51_4{
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int i = 0;
-        int ttl = 0;
+        int ttlodd = 0, ttleven=0;
             while (i<15){
                 System.out.println("Enter number: ");
                 int num = sc.nextInt();
 
                 if (num%2 == 1){
-                    ttl = num + ttl;
+                    ttlodd = num + ttlodd;
+                } else {
+                    ttleven = num + ttleven;
                 }
                 i = i+1;
             }
-        System.out.println("Total of odd numbers is: " + ttl);
+        System.out.println("Total of odd numbers is: " + ttlodd);
+        System.out.println("Total of even numbers is: " + ttleven);
     }
 }
 
 
 class q51_5{
     public static void main(String[] args) {
+        DecimalFormat df = new DecimalFormat("#.000");
+        DecimalFormat df2 = new DecimalFormat("#.00");
         int i = 10;
         final double PI = 3.1416;
         double area;
+        String strarea;
+        System.out.println("==================================");
+        System.out.println("|   r  |          area           |");
             while (i<=20){
                 area = PI * i * i;
-                System.out.println("Area of circle with radius " + i + " is: " + area);
+                    if(area<1000){
+                        strarea = df.format(area);
+                    } else {
+                        strarea = df2.format(area);
+                    }
+                System.out.println("|  " + i + "  |         " + strarea + "         |");
                 i = i+1;
             }
+        System.out.println("==================================");
+
     }
 }
 
