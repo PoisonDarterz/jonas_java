@@ -221,3 +221,37 @@ class practeststyle{
         //final output
     }
 }
+
+
+
+
+class pal2403{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int[] age = new int[5];
+        String[] name = new String[5];
+        int maxage=-99999;
+        String maxname="";
+
+        //input everything
+        for(int i=0; i<5; i++){
+            System.out.print("enter name");
+            name[i]= sc.nextLine();
+            System.out.print("enter age");
+            age[i] = sc.nextInt();
+        }
+        // name {a,b,c,d,e}
+        // age {12,6,56,78,90}
+
+        for(int j=0; j<5; j++){
+            if (age[j] > maxage){
+                maxage = age[j];
+                maxname = name[j];
+            }
+        }
+
+        System.out.println("The eldest person is " + maxname);
+        System.out.println("The age is: " + maxage);
+
+    }
+}
