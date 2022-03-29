@@ -37,9 +37,7 @@ class q52_4{
         for (int i = 100; i < 200; i+=10){
             System.out.print("\n");
             for(int j = 0; j<10; j++){
-                if(i+j<=200){
-                    System.out.print((i+j) + " ");
-                }
+                System.out.print((i+j) + " ");
             }
         }
         System.out.println("\n200");

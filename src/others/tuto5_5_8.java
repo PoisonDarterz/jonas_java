@@ -7,11 +7,11 @@ class tuto558{
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         DecimalFormat df = new DecimalFormat("#.00");
-        
         double taxincl;
         double sumprice = 0.0;
         double sumincl= 0.0;
         double sumtax = 0.0;
+        
         do{
             System.out.print("Enter tax-inclusive price in RM (or -1 to end): ");
             taxincl = sc.nextDouble();
@@ -27,7 +27,6 @@ class tuto558{
                     sumincl = sumincl + taxincl;
                     System.out.println("Actual price is: RM" + dfprice + ", Sales Tax is: RM" + dftax + "\n");
                 }
-            
         } while(taxincl != -1);
 
         String dfsumprice = df.format(sumprice);
