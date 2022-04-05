@@ -52,12 +52,15 @@ class tuto72_5{
         System.out.print("Enter integer: ");
             int num2 = sc.nextInt();
 
-            obj.Add(num1, num2);
+            int sum = obj.Add(num1, num2);
+            System.out.println("The sum is: " + sum);
+            //
             obj.Mul(num1, num2);
     }
 
-    void Add (int x,int y){
-        System.out.println("The sum is: " + (x+y));
+    int Add (int x,int y){
+        int z = x+y;
+        return z;
     }
     void Mul (int x,int y){
         System.out.println("The product is: " + (x*y));

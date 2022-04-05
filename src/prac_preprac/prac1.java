@@ -14,6 +14,7 @@ class prac1 {
         //init libraries
         Scanner jonas = new Scanner(System.in);
         DecimalFormat df = new DecimalFormat("#0.00");
+        prac1 obj=new prac1();
 
         //obtain variable inputs
         System.out.println("\n-----------------------KOK LANAS BANK-------------------------");
@@ -26,9 +27,12 @@ class prac1 {
             int year = jonas.nextInt();
 
             //calculations and formatting to 2dp
-            double interest = loan * (rate/100) * year; //convert percentage to decimal
+            //double interest = loan * (rate/100) * year;
+            double interest = obj.findinterest(loan,rate,year); //convert percentage too decimal
             double total = loan + interest;
-            double monthly = total / (12 * year); //divide by months, so mul by 12
+            //double monthly = total / (12 * year);
+            double monthly = obj.findmonthly(total,year); //divide by months, so mul by 12
+
             String inter2dp = df.format(interest);
             String month2dp = df.format(monthly);
 
@@ -40,4 +44,14 @@ class prac1 {
         System.out.println("\n**************************************************************\n");
         System.out.println("Program developed by: Jonas Chuan :)");
     }//end main
+
+    double findinterest(int ln, double rt, int yr){
+        double inter = ln * (rt/100) * yr; //convert percentage to decimal
+        return inter;
+    }
+
+    double findmonthly(double ttl, int yr){
+        double monthly = ttl / (12 * yr); //divide by months, so mul by 12
+        return monthly;
+    }
 }//end class

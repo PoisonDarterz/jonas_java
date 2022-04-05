@@ -26,16 +26,16 @@ class q61_2{
 class q61_3 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String[] array = new String[5];
+        String[] name = new String[5];
 
-            for (int i=0; i<array.length; i++){
+            for (int i=0; i<name.length; i++){
                 System.out.print("Enter a line: ");
-                array[i] = sc.nextLine();
+                name[i] = sc.nextLine();
             }
 
         System.out.println("Your inputted lines are: ");
-            for(int j=0; j<array.length; j++){
-                System.out.println(array[j]);
+            for(int j=0; j<name.length; j++){
+                System.out.println(name[j]);
             }
     }
 }
