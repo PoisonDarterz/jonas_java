@@ -66,7 +66,7 @@ class q63_2{
         System.out.println("-------------------------------");
         
         //determine maxmark, then determine name of person(s) with maxmark.
-        int maxmark=-99999;
+        int maxmark=marks.get(0);
             for(int m=0; m<numstudent; m++){
                 if(marks.get(m)>maxmark){
                     maxmark = marks.get(m);
@@ -87,10 +87,13 @@ class q63_2{
 class q63_3{
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        ArrayList<Double> aboveavg = new ArrayList<Double>();
+        q63_3 obj = new q63_3();
+
         System.out.print("Enter number of days: ");
-        int numday = sc.nextInt();
-        double temp[] = new double[numday];
-        double sum=0.0;
+            int numday = sc.nextInt();
+            double temp[] = new double[numday];
+            double sum=0.0;
 
             for(int i=0; i<temp.length; i++){
                 System.out.print("Enter temperature: ");
@@ -103,8 +106,55 @@ class q63_3{
                 System.out.print(temp[j] + "  ");
             }
 
-        double avg = sum / temp.length;
-        System.out.println("Average temperature is: " + avg);
+        double avg = obj.getAvg(sum, numday);
+        System.out.println("\n\nAverage temperature is: " + avg);
+
+        double max = obj.getMax(temp);
+        System.out.println("\nMaximum temperature is: " + max);
+
+        double min = obj.getMin(temp);
+        System.out.println("Minimum temperature is: " + min);
+
+        aboveavg = obj.getAbove(temp, avg);
+        System.out.println("\nTemperatures above average are: ");
+            for (int k =0; k<aboveavg.size(); k++){
+                System.out.print(aboveavg.get(k) + " ");
+            }
+    }
+
+    double getAvg(double sum, int num){
+        double avg = sum / num;
+        return avg;
+    }
+
+    double getMax(double[] array){
+        double maxtemp = array[0];
+        for (int i=0; i<array.length; i++){
+            if(array[i] > maxtemp){
+                maxtemp = array[i];
+            }
+        }
+        return maxtemp;
+    }
+
+    double getMin(double[] array){
+        double mintemp = array[0];
+        for (int i=0; i<array.length; i++){
+            if(array[i] < mintemp){
+                mintemp = array[i];
+            }
+        }
+        return mintemp;
+    }
+
+    ArrayList<Double> getAbove(double[] array, double avg){
+        ArrayList<Double> abvavg = new ArrayList<Double>();
+        for (int i=0; i<array.length; i++){
+            if(array[i] > avg){
+                abvavg.add(array[i]);
+            }
+        }
+        return abvavg;
     }
 }
 
@@ -117,7 +167,7 @@ class q63_4{
         int mark[] = new int[numstud];
         String name[] = new String[numstud];
         double sum=0.0;
-        int maxmark=-99999,minmark=99999;
+        int maxmark=mark[0],minmark=mark[0];
 
             for(int i=0; i<numstud; i++){
                 sc.nextLine();
@@ -159,5 +209,43 @@ class q63_4{
                     System.out.println(name[m]);
                 }
             }
+    }
+}
+
+
+
+class ganjilgenap{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        ArrayList<Integer> odd = new ArrayList<Integer>();
+        ArrayList<Integer> even = new ArrayList<Integer>();
+        ganjilgenap obj = new ganjilgenap();
+
+        int[] array = new int[10];
+
+        for(int i=0; i<10; i++){
+            System.out.println("Enter numbers:");
+            array[i] = sc.nextInt();
+        }
+
+        for(int j=0; j<10; j++){
+            if(array[j] %2 ==0){
+                even.add(array[j]);
+            } else {
+                odd.add(array[j]);
+            }
+        }
+
+        System.out.println("Number of even numbers: " + even.size());
+        System.out.println("List of even numbers: ");
+        for(int m =0; m<even.size(); m++){
+            System.out.print(even.get(m));
+        }
+        System.out.println("Number of odd numbers: " + odd.size());
+        System.out.println("List of odd numbers: ");
+        for(int n =0; n<odd.size(); n++){
+            System.out.print(odd.get(n));
+        }
+
     }
 }

@@ -35,7 +35,7 @@ class q62_2{
                 weight[i] = sc.nextDouble();
             }
 
-        double minweight=99999.0;
+        double minweight=weight[0];
         String minname="";
             for(int j=0; j<numstud; j++){
                 if(weight[j] < minweight){
