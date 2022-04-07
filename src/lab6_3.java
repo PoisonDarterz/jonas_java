@@ -4,6 +4,7 @@ import java.util.ArrayList;
 class q63_1 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        q63_1 obj = new q63_1();
         int[] array = new int[10];
 
         for(int i=0; i<array.length; i++){
@@ -11,12 +12,21 @@ class q63_1 {
             array[i] = sc.nextInt();
         }
 
-        int sum=0;
+        double sum=0;
         for (int j=0; j<array.length; j++){
             sum = sum + array[j];
         }
 
+        double avg = obj.getAvg(sum, array.length);
+        System.out.println("\nAverage is: " + avg);
+
+
         System.out.println("The sum of numbers inputted are: " + sum);
+    }
+
+    double getAvg(double ttl, int num){
+        double avg = ttl/num;
+        return avg;
     }
 }
 
@@ -25,6 +35,7 @@ class q63_2{
     public static void main(String[] args) {
         //init scanner and arraylists
         Scanner sc = new Scanner(System.in);
+        q63_2 obj = new q63_2();
         ArrayList<Integer> marks = new ArrayList<Integer>();
         ArrayList<String> name = new ArrayList<String>();
 
@@ -53,10 +64,23 @@ class q63_2{
             for(int j=0; j<numstudent; j++){
                 sum = sum + marks.get(j);
             }
-        average = sum / numstudent;
+
+        average = obj.getAvg(sum, numstudent);
         System.out.println("Average marks: " + average);
 
         //get students below average
+        obj.getBelowAvg(marks,name,numstudent,average);
+        
+        //determine maxmark, then determine name of person(s) with maxmark.
+        obj.getMax(marks,name,numstudent);
+    } //endmain
+
+    double getAvg(double ttl, int num){
+        double avg = ttl/num;
+        return avg;
+    }
+
+    void getBelowAvg(ArrayList<Integer> marks, ArrayList<String> name, int numstudent, double average){
         System.out.println("List of students below average: ");
             for(int k=0; k<numstudent; k++){
                 if (marks.get(k) < average){
@@ -64,8 +88,9 @@ class q63_2{
                 }
             }
         System.out.println("-------------------------------");
-        
-        //determine maxmark, then determine name of person(s) with maxmark.
+    }
+
+    void getMax(ArrayList<Integer> marks, ArrayList<String> name, int numstudent){
         int maxmark=marks.get(0);
             for(int m=0; m<numstudent; m++){
                 if(marks.get(m)>maxmark){
@@ -120,7 +145,7 @@ class q63_3{
             for (int k =0; k<aboveavg.size(); k++){
                 System.out.print(aboveavg.get(k) + " ");
             }
-    }
+    } //endmain
 
     double getAvg(double sum, int num){
         double avg = sum / num;
@@ -166,8 +191,10 @@ class q63_4{
         int numstud = sc.nextInt();
         int mark[] = new int[numstud];
         String name[] = new String[numstud];
+        ArrayList<String> failname = new ArrayList<String>();
+        ArrayList<String> passname = new ArrayList<String>();
         double sum=0.0;
-        int maxmark=mark[0],minmark=mark[0];
+        int maxmark=mark[0],minmark=Integer.MAX_VALUE;
 
             for(int i=0; i<numstud; i++){
                 sc.nextLine();
@@ -185,16 +212,38 @@ class q63_4{
                 if(mark[i]>maxmark){
                     maxmark = mark[i];
                 }
+
+                if(mark[i] <40){
+                    failname.add(name[i]);
+                } else {
+                    passname.add(name[i]);
+                }
             }
 
         double avg = sum / numstud;
-
+        
+        //namelist
         System.out.println("-------------------------------------------------");
         System.out.println("List of students and marks: ");
             for(int j=0; j<numstud; j++){
                 System.out.println(name[j] +"    " + mark[j]);
             }
+        //average
         System.out.println("Average marks is: " + avg);
+
+        //fail and pass
+        System.out.println("-------------------------------------------------");
+        System.out.println("List of students who failed: (Total number: " + failname.size() + " )");
+            for(int k=0; k<failname.size();k++){
+                System.out.println(failname.get(k));
+            }
+        System.out.println("-------------------------------------------------");
+        System.out.println("List of students who passed: (Total number: " + passname.size() + " )");
+            for(int k=0; k<passname.size();k++){
+                System.out.println(passname.get(k));
+            }
+
+        //max, minmark
         System.out.println("-------------------------------------------------");
         System.out.println("Highest mark is: " + maxmark + ". Students with highest marks is/are: ");
             for(int n=0; n<numstud; n++){
@@ -209,7 +258,7 @@ class q63_4{
                     System.out.println(name[m]);
                 }
             }
-    }
+    }//endmain
 }
 
 
