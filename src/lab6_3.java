@@ -258,6 +258,27 @@ class q63_4{
                     System.out.println(name[m]);
                 }
             }
+        //search
+        System.out.println("-------------------------------------------------");
+        ArrayList<String> foundname = new ArrayList<String>();
+        int found = 0;
+        System.out.println("Elements entered. Enter search value: ");
+            int value = sc.nextInt(); //input target
+            for(int p=0; p<mark.length; p++){ //start search
+                if(mark[p] == value){ //if value is found, it is added into counters first.
+                    found = found + 1;
+                    foundname.add(name[p]);
+                }
+            }
+        //final output
+            if(found>0){ //output is based on counter (how many value == target values found)
+                System.out.println("The value " + value + " is found " + foundname.size() + " times. The name(s) of students with this mark is: ");
+                for(int k=0;k<foundname.size();k++){
+                    System.out.println(foundname.get(k) + " ");
+                }
+            } else {
+                System.out.println("The value is not found in the entire array.");
+            }
     }//endmain
 }
 
@@ -295,6 +316,5 @@ class ganjilgenap{
         for(int n =0; n<odd.size(); n++){
             System.out.print(odd.get(n));
         }
-
     }
 }
