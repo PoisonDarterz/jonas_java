@@ -1,7 +1,8 @@
-package others;
-import java.util.Scanner;
-import java.text.DecimalFormat;
+package others;                 // User-defined package
+import java.util.Scanner;       // package: java.util
+import java.text.DecimalFormat; // package: java.text
 
+// More info on packages: https://www.w3schools.com/java/java_packages.asp?msclkid=f819cef2b4c311ecaf9bd26a92941989
 
 public class pal0603 {
     public static void main(String[] args) {
