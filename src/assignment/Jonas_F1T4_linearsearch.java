@@ -22,7 +22,6 @@ class jonas {
 
         stationID = obj.getID();
         stationName = obj.getName(stationID);
-
         fahrenheit = obj.getTemp(stationName);
         celsius = obj.getCelsius(fahrenheit);
 
@@ -30,8 +29,8 @@ class jonas {
         String dfavg = df.format(average);
 
             double maxTemp=celsius[0],minTemp=celsius[0];
-            String maxID="",maxName="",minID="",minName="";
-            int maxIndex=-1,minIndex=-1;
+            String maxID=stationID[0],maxName=stationName[0],minID=stationID[0],minName=stationName[0];
+            int maxIndex=0,minIndex=-1;
 
             for(int m = 0; m<5; m++){
                 if(celsius[m] > maxTemp){
@@ -40,56 +39,22 @@ class jonas {
                     maxName = stationName[m];
                     maxIndex = m;
                 }
-                if(celsius[m] < minTemp){
-                    minTemp = celsius[m];
-                    minID = stationID[m];
-                    minName = stationName[m];
-                    minIndex = m;
+            }
+            for(int n = 0; n<5; n++){
+                if(celsius[n] < minTemp){
+                    minTemp = celsius[n];
+                    minID = stationID[n];
+                    minName = stationName[n];
+                    minIndex = n;
                 }
             }
 
         obj.tempReport(maxTemp,minTemp,maxID,minID,maxIndex,minIndex,maxName,minName,dfavg);
-        
-        String yesno;
-        String target;
-        do{
-            System.out.print("Search by station ID? (Y/N): ");
-            sc.nextLine();
-            yesno = sc.nextLine();
-                if (yesno.equals("N")){
-                    System.out.println("OK. System will exit now.");
-                    System.exit(0);
-                } else if (!(yesno.equals("Y"))){
-                    System.out.println("Invalid input!");
-                } else {
-                    continue;
-                }
-            System.out.print("Enter station ID to search: ");
-            target = sc.nextLine();
-            int tgtIndex;
-            String tgtID,tgtName;
-            double tgtTemp;
-            boolean found = false;
-            for(int n =0; n<5; n++){
-                if(stationID[n].equals(target)){
-                    tgtTemp = celsius[n];
-                    tgtID = stationID[n];
-                    tgtName = stationName[n];
-                    tgtIndex = n;
-                    found = true;
-                    String dftgtTemp = df.format(tgtTemp);
-                    System.out.println("Target found.");
-                    System.out.println(tgtIndex + "\t" + tgtID + "\t" + tgtName + "\t" + dftgtTemp);
-                }
-            }
-
-            if(!found){
-                System.out.println("No record found. Please search again.");
-            }
-        } while(yesno.equals("Y"));
+        obj.search(stationID,stationName,celsius);
     }
 
     String[] getID(){
+        System.out.println("-------Input of Station ID--------");
         String[] input = new String[5];
         for(int i=0; i<5; i++){
             System.out.print("Enter station ID " + (i+1) + ": ");
@@ -99,6 +64,7 @@ class jonas {
     }
 
     String[] getName(String[] sID){
+        System.out.println("\n-------Input of Station Name-------");
         String[] input = new String[5];
         for(int i=0; i<5; i++){
             System.out.print("Enter station name for " + sID[i] + ": ");
@@ -108,6 +74,7 @@ class jonas {
     }
 
     double[] getTemp(String[] sName){
+        System.out.println("\n-----Input of Temperature in Fahrenheit-----");
         double[] input = new double[5];
         for(int i=0; i<5; i++){
             System.out.print("Enter temperature of " + sName[i] + ": ");
@@ -139,9 +106,54 @@ class jonas {
         String dfmax = df.format(maxTemp);
         String dfmin = df.format(minTemp);
 
-        System.out.println("---------------Temperature Report------------------");
-        System.out.println("Average temperature is: " + dfavg);
-        System.out.println("Maximum temperature:\t" + maxIndex + "\t" + maxID + "\t" + maxName + "\t" + dfmax);
-        System.out.println("Minimum temperature:\t" + minIndex + "\t" + minID + "\t" + minName + "\t" + dfmin);
+        System.out.println("\n---------------Temperature Report------------------");
+        System.out.println("Average temperature is: " + dfavg + " Celsius.");
+        System.out.println("Type   \t" + "    Index     ID        Name        Temperature");
+        System.out.println("Maximum: \t" + maxIndex + "\t" + maxID + "\t" + maxName + "\t" + dfmax + " Celsius.");
+        System.out.println("Minimum: \t" + minIndex + "\t" + minID + "\t" + minName + "\t" + dfmin + " Celsius.");
+    }
+
+    void search(String[] stationID, String[] stationName, double[] celsius){
+        System.out.println("\n======= Station ID Search =======");
+        String yesno="";
+        String target;
+        do{
+            do{
+                System.out.print("Search by station ID? (Y/N): ");
+                yesno = sc.next();
+                    if (yesno.equals("N")){
+                        System.out.println("OK. System will exit now.");
+                        System.exit(0);
+                    } else if (yesno.equals("Y")){
+                        continue;
+                    } else {
+                        System.out.println("Invalid input!");
+                    }
+            } while(!(yesno.equals("Y") || yesno.equals("N")));
+            System.out.print("Enter station ID to search: ");
+            target = sc.next();
+            int tgtIndex;
+            String tgtID,tgtName;
+            double tgtTemp;
+            boolean found = false;
+            for(int n =0; n<5; n++){
+                if(stationID[n].equals(target)){
+                    tgtTemp = celsius[n];
+                    tgtID = stationID[n];
+                    tgtName = stationName[n];
+                    tgtIndex = n;
+                    found = true;
+                    String dftgtTemp = df.format(tgtTemp);
+                    System.out.println("Target found.");
+                    System.out.println("Index  ID        Name        Temperature");
+                    System.out.println(tgtIndex + "\t" + tgtID + "\t" + tgtName + "\t" + dftgtTemp + " Celsius.");
+                }
+            }
+
+            if(!found){
+                System.out.println("No record found. Please search again.");
+            }
+        } while(true);
+
     }
 }
