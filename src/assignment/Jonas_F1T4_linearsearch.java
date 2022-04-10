@@ -8,6 +8,7 @@
 package assignment;
 import java.util.Scanner;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 class jonas {
     //declare static objects to be able to use in all methods
@@ -30,36 +31,52 @@ class jonas {
         double average = obj.getAvg(celsius);
         String dfavg = df.format(average);
 
-            //determine max and min rows
-            double maxTemp=celsius[0],minTemp=celsius[0];
-            String maxID=stationID[0],maxName=stationName[0],minID=stationID[0],minName=stationName[0];
-            int maxIndex=0,minIndex=-1;
+            /*determine max and min rows.
+            * System will determine the max and min temperatures first,
+            * then search for all stations with that max/min temps.
+            */
+            double maxTemp = celsius[0];
+            double minTemp = celsius[0];
+            ArrayList<String> maxName = new ArrayList<String>();
+            ArrayList<String> minName = new ArrayList<String>();
+            ArrayList<String> maxID = new ArrayList<String>();
+            ArrayList<String> minID = new ArrayList<String>();
+            ArrayList<Integer> maxIndex = new ArrayList<Integer>();
+            ArrayList<Integer> minIndex = new ArrayList<Integer>();
             for(int m = 0; m<5; m++){
                 if(celsius[m] > maxTemp){
                     maxTemp = celsius[m];
-                    maxID = stationID[m];
-                    maxName = stationName[m];
-                    maxIndex = m;
+                }
+                if(celsius[m] < minTemp){
+                    minTemp = celsius[m];
                 }
             }
             for(int n = 0; n<5; n++){
-                if(celsius[n] < minTemp){
-                    minTemp = celsius[n];
-                    minID = stationID[n];
-                    minName = stationName[n];
-                    minIndex = n;
+                if(celsius[n] == maxTemp){
+                    maxID.add(stationID[n]);
+                    maxName.add(stationName[n]);
+                    maxIndex.add(n);
+                }
+                if(celsius[n] == minTemp){
+                    minID.add(stationID[n]);
+                    minName.add(stationName[n]);
+                    minIndex.add(n);
                 }
             }
 
         //final report, and search
+        obj.fullReport(stationID,stationName,celsius);
         obj.tempReport(maxTemp,minTemp,maxID,minID,maxIndex,minIndex,maxName,minName,dfavg);
-        obj.search(stationID,stationName,celsius);
+        obj.search(stationID,stationName,fahrenheit,celsius);
     } //end main()
 
-    //input methods getID(), getName(), getTemp()
+    /*input methods getID(), getName(), getTemp()
+    * Generally, it contains: 
+    * Array Declaration > Header > Input Loop > Return statement.
+    */
     String[] getID(){
-        System.out.println("-------Input of Station ID--------");
         String[] input = new String[5];
+        System.out.println("-------Input of Station ID--------");
             for(int i=0; i<5; i++){
                 System.out.print("Enter station ID " + (i+1) + ": ");
                 input[i] = sc.nextLine();
@@ -68,8 +85,8 @@ class jonas {
     }
 
     String[] getName(String[] sID){
-        System.out.println("\n-------Input of Station Name-------");
         String[] input = new String[5];
+        System.out.println("\n-------Input of Station Name-------");
             for(int i=0; i<5; i++){
                 System.out.print("Enter station name for " + sID[i] + ": ");
                 input[i] = sc.nextLine();
@@ -78,8 +95,8 @@ class jonas {
     }
 
     double[] getTemp(String[] sName){
-        System.out.println("\n-----Input of Temperature in Fahrenheit-----");
         double[] input = new double[5];
+        System.out.println("\n-----Input of Temperature in Fahrenheit-----");
             for(int i=0; i<5; i++){
                 System.out.print("Enter temperature of " + sName[i] + ": ");
                 input[i] = sc.nextDouble();
@@ -105,8 +122,22 @@ class jonas {
         return avg;
     }
 
-    void tempReport(double maxTemp, double minTemp, String maxID, String minID,
-                    int maxIndex, int minIndex, String maxName, String minName, String dfavg)
+    //Report method
+    void fullReport(String[] sID, String[] sName, double[] cels){
+        String[] dfcels = new String[5];
+        for(int j=0; j<5; j++){
+            dfcels[j] = df.format(cels[j]); //format celsius to 2 d.p.
+        }
+        System.out.println("\n----------------Input Summary---------------------");
+        System.out.println("ID\t| Name\t|  Temperature (C)");
+        for(int i=0; i<5; i++){
+            System.out.println(sID[i] + "\t|" + sName[i] + "\t|" + dfcels[i]);
+        }
+    }
+
+    void tempReport(double maxTemp, double minTemp, ArrayList<String> maxID, ArrayList<String> minID,
+                    ArrayList<Integer> maxIndex, ArrayList<Integer> minIndex, ArrayList<String> maxName,
+                    ArrayList<String> minName, String dfavg)
     {
         //formatting decimal places
         String dfmax = df.format(maxTemp);
@@ -114,18 +145,27 @@ class jonas {
         //outputs
         System.out.println("\n---------------Temperature Report------------------");
         System.out.println("Average temperature is: " + dfavg + " Celsius.");
-        System.out.println("Type   \t" + "    Index     ID        Name        Temperature");
-        System.out.println("Maximum: \t" + maxIndex + "\t" + maxID + "\t" + maxName + "\t" + dfmax + " Celsius.");
-        System.out.println("Minimum: \t" + minIndex + "\t" + minID + "\t" + minName + "\t" + dfmin + " Celsius.");
+
+        System.out.println("\nStations with maximum temperatures: ");
+        System.out.println("Index\t|  ID\t| Name\t| Celsius");
+        for(int i=0; i<maxID.size(); i++){
+            System.out.println(maxIndex.get(i) + "\t|" + maxID.get(i) + "\t|" + maxName.get(i) + "\t|" + dfmax);
+        }
+
+        System.out.println("\nStations with minimum temperatures: ");
+        System.out.println("Index\t|  ID\t| Name\t| Celsius");
+        for(int j=0; j<minID.size(); j++){
+            System.out.println(minIndex.get(j) + "\t|" + minID.get(j) + "\t|" + minName.get(j) + "\t|" + dfmin);
+        }
     } //end tempReport()
 
-    void search(String[] stationID, String[] stationName, double[] celsius){
+    void search(String[] stationID, String[] stationName, double[] fahrenheit, double[] celsius){
         System.out.println("\n======= Station ID Search =======");
         String yesno="";
         String target;
         do{
             do{ //this loop verifies that user wants to search. if "N" is inputted, the program will end immediately.
-                System.out.print("Search by station ID? (Y/N): ");
+                System.out.print("\nSearch by station ID? (Y/N): ");
                 yesno = sc.next();
                     if (yesno.equals("N")){
                         System.out.println("OK. System will exit now.");
@@ -133,33 +173,36 @@ class jonas {
                     } else if (yesno.equals("Y")){
                         continue;
                     } else {
-                        System.out.println("Invalid input!");
+                        System.out.println("Invalid input! Please input \"Y\" or \"N\" only.");
                     }
             } while(!(yesno.equals("Y") || yesno.equals("N")));
             //var initialisations
             int tgtIndex;
             String tgtID,tgtName;
-            double tgtTemp;
+            double tgtCels, tgtFahr;
             //search algorithm
             System.out.print("Enter station ID to search: ");
                 target = sc.next();
                 boolean found = false;
                 for(int n =0; n<5; n++){
                     if(stationID[n].equals(target)){
-                        tgtTemp = celsius[n];
+                        tgtCels = celsius[n];
+                        tgtFahr = fahrenheit[n];
                         tgtID = stationID[n];
                         tgtName = stationName[n];
                         tgtIndex = n;
                         found = true;
-                        String dftgtTemp = df.format(tgtTemp);
-                        System.out.println("Target found.");
-                        System.out.println("Index  ID        Name        Temperature");
-                        System.out.println(tgtIndex + "\t" + tgtID + "\t" + tgtName + "\t" + dftgtTemp + " Celsius.");
+                        String dftgtCels = df.format(tgtCels);
+                        String dftgtFahr = df.format(tgtFahr);
+                        System.out.println("Target found. Displaying.....");
+                        System.out.println("Index\t|  ID\t| Name\t|Fahren.|Celsius");
+                        System.out.println(tgtIndex + "\t|" + tgtID + "\t|" + tgtName + "\t|" + dftgtFahr + "\t|" + dftgtCels);
                     }
                 }
                 if(!found){
-                    System.out.println("No record found. Please search again.");
+                    System.out.println("No record for station ID " + target + " found. Please search again.");
                 }
-        } while(true); //loops back to line 126
+        } while(true); //loops back to line 126. 
+                      //This is not considered an infinite loop as it contains a program-ending sentinel value "N".
     } //end search()
 }
