@@ -202,6 +202,7 @@ class jonas {
                 if(!found){
                     System.out.println("No record for station ID " + target + " found. Please search again.");
                 }
+                System.out.println("All temperatures processed.");
         } while(true); //loops back to line 126. 
                       //This is not considered an infinite loop as it contains a program-ending sentinel value "N".
     } //end search()
