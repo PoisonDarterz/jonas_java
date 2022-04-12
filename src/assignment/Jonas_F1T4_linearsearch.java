@@ -129,9 +129,10 @@ class jonas {
             dfcels[j] = df.format(cels[j]); //format celsius to 2 d.p.
         }
         System.out.println("\n----------------Input Summary---------------------");
-        System.out.println("ID\t| Name\t|  Temperature (C)");
+        System.out.printf("%-10s %-18s %-5s\n", "ID", "Name", "Temperature (C)");
+        
         for(int i=0; i<5; i++){
-            System.out.println(sID[i] + "\t|" + sName[i] + "\t|" + dfcels[i]);
+            System.out.printf("%-10s %-18s %-5s\n", sID[i], sName[i], dfcels[i]);
         }
     }
 
@@ -147,15 +148,17 @@ class jonas {
         System.out.println("Average temperature is: " + dfavg + " Celsius.");
 
         System.out.println("\nStations with maximum temperatures: ");
-        System.out.println("Index\t|  ID\t| Name\t| Celsius");
+        System.out.printf("%-7s %-10s %-18s %-5s\n", "Index", "ID", "Name", "Celsius");
+
         for(int i=0; i<maxID.size(); i++){
-            System.out.println(maxIndex.get(i) + "\t|" + maxID.get(i) + "\t|" + maxName.get(i) + "\t|" + dfmax);
+            System.out.printf("%-7d %-10s %-18s %-5s\n", maxIndex.get(i), maxID.get(i),  maxName.get(i), dfmax);
         }
 
         System.out.println("\nStations with minimum temperatures: ");
-        System.out.println("Index\t|  ID\t| Name\t| Celsius");
+        System.out.printf("%-7s %-10s %-18s %-5s\n", "Index", "ID", "Name", "Celsius");
+
         for(int j=0; j<minID.size(); j++){
-            System.out.println(minIndex.get(j) + "\t|" + minID.get(j) + "\t|" + minName.get(j) + "\t|" + dfmin);
+            System.out.printf("%-7d %-10s %-18s %-5s\n", minIndex.get(j), minID.get(j),  minName.get(j), dfmin);
         }
     } //end tempReport()
 
@@ -169,6 +172,7 @@ class jonas {
                 yesno = sc.next();
                     if (yesno.equals("N")){
                         System.out.println("OK. System will exit now.");
+                        System.out.println("All temperatures processed.");
                         System.exit(0);
                     } else if (yesno.equals("Y")){
                         continue;
@@ -195,15 +199,14 @@ class jonas {
                         String dftgtCels = df.format(tgtCels);
                         String dftgtFahr = df.format(tgtFahr);
                         System.out.println("Target found. Displaying.....");
-                        System.out.println("Index\t|  ID\t| Name\t|Fahren.|Celsius");
-                        System.out.println(tgtIndex + "\t|" + tgtID + "\t|" + tgtName + "\t|" + dftgtFahr + "\t|" + dftgtCels);
+                        System.out.printf("%-7s %-10s %-18s %-10s %-10s\n", "Index", "ID", "Name", "Fahrenheit" ,"Celsius");
+                        System.out.printf("%-7d %-10s %-18s %-10s %-10s\n", tgtIndex, tgtID, tgtName, dftgtFahr , dftgtCels);
                     }
                 }
                 if(!found){
                     System.out.println("No record for station ID " + target + " found. Please search again.");
                 }
-                System.out.println("All temperatures processed.");
-        } while(true); //loops back to line 126. 
+            } while(true); //loops back to line 126. 
                       //This is not considered an infinite loop as it contains a program-ending sentinel value "N".
     } //end search()
 }
