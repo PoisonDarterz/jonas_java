@@ -21,7 +21,6 @@ class jonas {
         String[] stationName = new String[5];
         double[] fahrenheit = new double[5];
         double[] celsius = new double[5];
-
         //obtain inputs via methods, and conversion of F to C temperatures
         stationID = obj.getID();
         stationName = obj.getName(stationID);
@@ -30,7 +29,6 @@ class jonas {
         //calculate average
         double average = obj.getAvg(celsius);
         String dfavg = df.format(average);
-
             /*determine max and min rows.
             * System will determine the max and min temperatures first,
             * then search for all stations with that max/min temps.
@@ -63,7 +61,6 @@ class jonas {
                     minIndex.add(n);
                 }
             }
-
         //final report, and search
         obj.fullReport(stationID,stationName,celsius);
         obj.tempReport(maxTemp,minTemp,maxID,minID,maxIndex,minIndex,maxName,minName,dfavg);
@@ -102,7 +99,7 @@ class jonas {
                 input[i] = sc.nextDouble();
             }
         return input;
-    }
+    } //end of input methods
 
     //calculation method getCelsius(), getAvg()
     double[] getCelsius(double[] frh){
@@ -120,7 +117,7 @@ class jonas {
             }
         avg = sum / 5;
         return avg;
-    }
+    } //end of calculation methods
 
     //Report method
     void fullReport(String[] sID, String[] sName, double[] cels){
@@ -129,8 +126,8 @@ class jonas {
             dfcels[j] = df.format(cels[j]); //format celsius to 2 d.p.
         }
         System.out.println("\n----------------Input Summary---------------------");
-        System.out.printf("%-10s %-18s %-5s\n", "ID", "Name", "Temperature (C)");
-        
+        //printf is used so table is padded and columns are aligned
+        System.out.printf("%-10s %-18s %-5s\n", "ID", "Name", "Temperature (C)"); 
         for(int i=0; i<5; i++){
             System.out.printf("%-10s %-18s %-5s\n", sID[i], sName[i], dfcels[i]);
         }
@@ -149,14 +146,11 @@ class jonas {
 
         System.out.println("\nStations with maximum temperatures: ");
         System.out.printf("%-7s %-10s %-18s %-5s\n", "Index", "ID", "Name", "Celsius");
-
         for(int i=0; i<maxID.size(); i++){
             System.out.printf("%-7d %-10s %-18s %-5s\n", maxIndex.get(i), maxID.get(i),  maxName.get(i), dfmax);
         }
-
         System.out.println("\nStations with minimum temperatures: ");
         System.out.printf("%-7s %-10s %-18s %-5s\n", "Index", "ID", "Name", "Celsius");
-
         for(int j=0; j<minID.size(); j++){
             System.out.printf("%-7d %-10s %-18s %-5s\n", minIndex.get(j), minID.get(j),  minName.get(j), dfmin);
         }
@@ -209,4 +203,4 @@ class jonas {
             } while(true); //loops back to line 126. 
                       //This is not considered an infinite loop as it contains a program-ending sentinel value "N".
     } //end search()
-}
+} // end class
