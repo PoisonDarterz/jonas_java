@@ -8,15 +8,15 @@ class p69_1{ //q2
         p69_1 obj = new p69_1();
 
         System.out.print("Enter year (eg. 2020 / 2021): ");
-        int year = sc.nextInt();
+            int year = sc.nextInt();
         System.out.print("Enter month (eg. January / February): ");
-        sc.nextLine();
-        String mth = sc.nextLine();
+            sc.nextLine();
+            String mth = sc.nextLine();
         System.out.print("Enter date of month (eg. 1 , 2): ");
-        int date = sc.nextInt();
+            int date = sc.nextInt();
         System.out.print("Enter day of week (eg. Monday / Tuesday): ");
-        sc.nextLine();
-        String day = sc.nextLine();
+            sc.nextLine();
+            String day = sc.nextLine();
 
         obj.printAmerican(year,mth,date,day);
         obj.printEuropean(year,mth,date,day);
@@ -39,10 +39,8 @@ class p69_2{ //q3
     public static void main(String[] args) {
         p69_2 obj = new p69_2();
         System.out.print("Enter integer: ");
-        int num = sc.nextInt();
-
-        int squ = obj.square(num);
-
+            int num = sc.nextInt();
+            int squ = obj.square(num);
         System.out.println("The square of the number is: " + squ);
     }
 
@@ -50,6 +48,7 @@ class p69_2{ //q3
         return (n * n);
     }
 }
+
 
 class p69_3{ //q5
     static Scanner sc = new Scanner(System.in);

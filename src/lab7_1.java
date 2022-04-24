@@ -82,11 +82,11 @@ class q71_2{
 }
 
 
-class q72_4{
+class q71_4{
     static Scanner sc = new Scanner(System.in);
     static DecimalFormat df = new DecimalFormat("#.00");
     public static void main(String[] args) {
-        q72_4 obj = new q72_4();
+        q71_4 obj = new q71_4();
 
         System.out.print("Enter radius: ");
             double radius = sc.nextDouble();
@@ -113,10 +113,10 @@ class q72_4{
 }
 
 
-class q72_6{
+class q71_6{
     static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
-        q72_6 obj = new q72_6();
+        q71_6 obj = new q71_6();
 
         System.out.println("Enter sales amount so far: ");
             double oriamt = sc.nextDouble(); 
