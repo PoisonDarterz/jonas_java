@@ -132,35 +132,3 @@ class q71_6{
         return (ori + amt);
     }
 }
-
-
-class q72_1{
-    static Scanner sc = new Scanner(System.in);
-    public static void main(String[] args) {
-        q72_1 obj = new q72_1();
-        int age = obj.getAge();
-        boolean eligib = obj.check(age);
-        obj.output(eligib);
-    }
-
-    int getAge(){
-        System.out.print("Enter age: ");
-        return sc.nextInt();
-    }
-
-    boolean check(int a){
-        if(a>=18){
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    void output(boolean e){
-        if(e){
-            System.out.println("You are eligible to vote.");
-        } else {
-            System.out.println("You are not eligible to vote.");
-        }
-    }
-}
