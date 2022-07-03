@@ -2,6 +2,7 @@
 * poorly written code to test and learn the printf formatting for nice tables in output. 
 * safely ignore this file.
 */
+
 package assignment;
 
 import java.text.DecimalFormat;
