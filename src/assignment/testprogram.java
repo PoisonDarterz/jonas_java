@@ -11,26 +11,14 @@ public class testprogram {
     static DecimalFormat df = new DecimalFormat("#.00");
     public static void main(String[] args) {
         
-        String[] stationID = {"aaaa" ,"bbbb", "cccc", "dddd", "eeee"};
-        String[] stationName = {"qwertyuiop", "asdfghjkl", "zxcvbnm,.", "1234567890", "!@#$%^&*()"};
-        double[] fahrenheit = {78,90,45,90,45};
-        double[] celsius = new double[5];
-        String[] dfcels = new String[5];
+        char choice = 'D';
 
-        for(int i=0; i<5; i++){
-            celsius[i] = (fahrenheit[i] - 32) * 5 / 9;
-            dfcels[i] = df.format(celsius[i]);
+        switch (choice) {
+            case 'A' -> System.out.println("Apple Pie");
+            case 'B' -> System.out.println("Blueberry Pudding");
+            case 'C', 'D' -> System.out.println("Milk Tea");
+            default -> System.out.println("Invalid Choice");
         }
-
-        System.out.println("\n----------------Input Summary---------------------");
-        // System.out.println("ID\t| Name\t|  Temperature (C)");
-        System.out.printf("%-10s %-18s %-5s\n", "ID", "Name", "Temperature (C)");
-
-        for(int i=0; i<5; i++){
-            System.out.printf("%-10s %-18s %-5s\n", stationID[i], stationName[i], dfcels[i]);
-            // System.out.println(stationID[i] + "\t|" + stationName[i] + "\t|" + dfcels[i]);
-        }
-
 
     }
 }
