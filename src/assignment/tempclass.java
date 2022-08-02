@@ -1,10 +1,3 @@
-/*
-* Jonas Chuan
-* F1T4
-* MS2124135412
-* Assignment SC025
-*/
-
 package assignment;
 
 import java.util.Scanner;
@@ -92,10 +85,10 @@ public class tempclass {
 
     void search(String[] stationID, String[] stationName, double[] fahrenheit, double[] celsius){
         System.out.println("\n======= Station ID Search =======");
-        String yesno="";
+        String yesno = "";
         String target;
-        do{
-            do{ //this loop verifies that user wants to search. if "N" is inputted, the program will end immediately.
+        do {
+            do { //this loop verifies that user wants to search. if "N" is inputted, the program will end immediately.
                 System.out.print("\nSearch by station ID? (Y/N): ");
                 yesno = sc.next();
                     if (yesno.equals("N")){
@@ -107,17 +100,17 @@ public class tempclass {
                     } else {
                         System.out.println("Invalid input! Please input \"Y\" or \"N\" only.");
                     }
-            } while(!(yesno.equals("Y") || yesno.equals("N")));
+            } while (!(yesno.equals("Y") || yesno.equals("N")));
             //var initialisations
             int tgtIndex;
-            String tgtID,tgtName;
+            String tgtID, tgtName;
             double tgtCels, tgtFahr;
             //search algorithm
             System.out.print("Enter station ID to search: ");
                 target = sc.next();
                 boolean found = false;
-                for(int n =0; n<5; n++){
-                    if(stationID[n].equals(target)){
+                for (int n = 0; n < 5; n++) {
+                    if (stationID[n].equals(target)){
                         tgtCels = celsius[n];
                         tgtFahr = fahrenheit[n];
                         tgtID = stationID[n];
@@ -131,11 +124,11 @@ public class tempclass {
                         System.out.printf("%-7d %-10s %-18s %-10s %-10s\n", tgtIndex, tgtID, tgtName, dftgtFahr , dftgtCels);
                     }
                 }
-                if(!found){
+                if (!found) {
                     System.out.println("No record for station ID " + target + " found. Please search again.");
                 }
-            } while(true); //loops back to line 126. 
-                           //This is not considered an infinite loop as it contains a program-ending sentinel value "N".
+            } while (true); //loops back to line 126. 
+                            //This is not considered an infinite loop as it contains a program-ending sentinel value "N".
     } //end search()
 
     public static void main(String[] args) {
@@ -157,20 +150,20 @@ public class tempclass {
             ArrayList<Integer> maxIndex = new ArrayList<Integer>();
             ArrayList<Integer> minIndex = new ArrayList<Integer>();
             for(int m = 0; m<5; m++){
-                if(temp.celsius[m] > maxTemp){
+                if (temp.celsius[m] > maxTemp) {
                     maxTemp = temp.celsius[m];
                 }
-                if(temp.celsius[m] < minTemp){
+                if (temp.celsius[m] < minTemp) {
                     minTemp = temp.celsius[m];
                 }
             }
-            for(int n = 0; n<5; n++){
-                if(temp.celsius[n] == maxTemp){
+            for (int n = 0; n < 5; n++) {
+                if (temp.celsius[n] == maxTemp) {
                     maxID.add(sta.sID[n]);
                     maxName.add(sta.sName[n]);
                     maxIndex.add(n);
                 }
-                if(temp.celsius[n] == minTemp){
+                if (temp.celsius[n] == minTemp) {
                     minID.add(sta.sID[n]);
                     minName.add(sta.sName[n]);
                     minIndex.add(n);
@@ -178,9 +171,8 @@ public class tempclass {
             }
 
         //final report, and search
-        obj.fullReport(sta.sID,sta.sName,temp.celsius);
-        obj.tempReport(maxTemp,minTemp,maxID,minID,maxIndex,minIndex,maxName,minName,dfavg);
-        obj.search(sta.sID,sta.sName,temp.fahrenheit,temp.celsius);
+        obj.fullReport(sta.sID, sta.sName, temp.celsius);
+        obj.tempReport(maxTemp, minTemp, maxID, minID, maxIndex, minIndex, maxName, minName, dfavg);
+        obj.search(sta.sID, sta.sName, temp.fahrenheit, temp.celsius);
     } //end main()
 }
-
