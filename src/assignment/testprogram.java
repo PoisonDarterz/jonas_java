@@ -20,5 +20,7 @@ public class testprogram {
             default -> System.out.println("Invalid Choice");
         }
 
+        double randomshit = Math.random();
+        System.out.println(randomshit);
     }
 }
