@@ -1,7 +1,6 @@
 /* Jonas Chuan
    F1T4 */
 
-
 import java.util.Scanner;
 
 class lab2_1 {
