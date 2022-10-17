@@ -7,6 +7,7 @@ is ignored by the compiler.
 Jonas Chuan
    F1T4 */
 
+   import java.util.Scanner;
 
 public class Output {//beginning of class
     public static void main(String[] args){//beginning of main method
@@ -51,5 +52,21 @@ public class Output {//beginning of class
 class arraydemo{
     public static void main(String[] args) {
         System.out.println(-5 + 1/2);
+    }
+}
+
+class random{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n=0;
+        int sum=0;
+        while (n<1){
+            System.out.println("Enter a positive number: ");
+            n = sc.nextInt();
+        }
+        for (int i=1; i<=n; i+=2){
+            sum += i;
+        }
+        System.out.println("Sum of odd numbers from 1 to n is " + sum);
     }
 }
